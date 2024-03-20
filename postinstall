@@ -14,6 +14,7 @@ init() {
     mkdir -p $HOME/.cache/postinstall/
     mkdir -p $HOME/.local/bin $HOME/.local/src
 
+    sleep 5
     clear
 }
 
