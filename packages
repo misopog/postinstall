@@ -1,0 +1,144 @@
+# Xorg
+
+xorg-server                 # XOrg server
+xorg-apps                   # XOrg apps group
+xorg-xinit                  # XOrg init
+xorg-xkill                  # XOrg kill
+xorg-xmessage               # XOrg message
+xorg-xprop                  # XOrg prop
+xorg-xrdb                   # XOrg rdb
+xorg-xset                   # XOrg set
+xorg-xsetroot               # Xorg setroot
+xorg-xbacklight             # For changing screen brightness levels
+xorg-xrandr                 # Tool for setting displays
+xf86-video-intel            # 2D/3D video driver
+xf86-input-libinput         # Trackpad driver
+arandr                      # GUI for xrandr
+mesa                        # Open source version of OpenGL
+xcompmgr                    # Compositor
+i3                          # My window manager of choice
+
+# Theming
+
+lxappearance                # Theme setter
+papirus-icon-theme          # Icons
+gnome-themes-extra          # Adwaita
+python-qdarkstyle           # A dark Qt theme
+
+# Networking
+
+network-manager-applet      # System tray icon/utility for network connectivity
+wireguard-tools             # Wireguard utils
+wireguird                   # Wireguard gui
+
+# Printing
+cups                        # Open source printer drivers
+cups-pdf                    # PDF support for cups
+ghostscript                 # PostScript interpreter
+gsfonts                     # Adobe Postscript replacement fonts
+hplip                       # HP Drivers
+system-config-printer       # Printer setup  utility
+
+
+# Terminal utils 
+
+feh                         # Terminal-based image viewer/manipulator
+fzf                         # Fuzzy finder
+xwallpaper                  # Tool for setting wallpapers
+htop                        # System monitoring via terminal
+xbanish                     # Deletes your cursor when you start typing
+dunst                       # Notification daemon
+neofetch                    # Shows system info when you launch terminal
+numlockx                    # Turns on numlock in X11
+rsync                       # Remote file sync utility
+speedtest-cli               # Internet speed via terminal
+unrar                       # RAR compression program
+zip                         # Zip compression program
+unzip                       # Zip decompression program
+wget                        # Remote content retrieval
+libnotify                   # Desktop notifications
+zsh                         # ZSH shell
+zsh-completions             # Tab completion for ZSH
+mandb                       # Lets you read manpages
+moreutils                   # Is a collection of useful unix tools
+gnome-keyring               # The system keyring
+xclip                       # Copying and pasting from the command line
+xcape                       # Special escape/super mappings
+bat                         # Better cat
+
+# Disk utils
+
+exfat-utils                 # Mount exFat drives
+ntfs-3g                     # Open source implementation of NTFS file system
+parted                      # Disk utility
+gparted                     # Graphical disk utility
+dosfstools                  # Allows your computer to access dos-like filesystems
+
+# General utils
+
+pcmanfm                     # Filesystem browser
+lxsession                   # Polkit
+
+# Dev
+
+vscodium                    # Text editor
+neovim                      # CLI text editor
+clang                       # C Lang compiler
+cmake                       # Cross-platform open-source make system
+git                         # Version control system
+gcc                         # C/C++ compiler
+glibc                       # C libraries
+nodejs                      # NodeJS
+npm                         # Node package manager
+python                      # Scripting language
+
+# Web tools
+
+
+firefox                     # Web browser
+filezilla                   # FTP Client
+
+
+# Communication
+
+discord                     # Discord app
+
+# Media
+
+cmus                        # Terminal music player (should be in the terminal utils category but idk)
+simplescreenrecorder        # Record your screen
+mpv                         # Video player
+maim                        # Screen capture.
+slop                        # Needed for maim
+ffmpeg                      # Can record and splice video and audio on the command line 
+ffmpegthumbnailer           # Creates thumbnail previews of video files
+
+# Graphics
+
+imagemagick                 # Command line image manipulation tool
+nsxiv                       # simple image viewer
+ttf-jetbrains-mono          # My favourite font
+ttf-jetbrains-mono-nerd     # My favourite font (but with nerd-fonts support)
+gnu-free-fonts              # OSS fonts
+adobe-source-code-pro-fonts # Adobe fonts
+adobe-source-sans-fonts     # Adobe fonts pt.2
+ttf-joypixels               # JoyPixels font
+ttf-ms-fonts                # Microshit fonts
+ttf-ubuntu-font-family      # Ubuntu fonts
+ttf-dejavu                  # Properly displays emojis
+ttf-font-awesome            # Provides extended glyph support
+
+
+# Productivity 
+
+qalculate-gtk               # calculator
+libreoffice-fresh           # LibreOffice with extra features
+mousepad                    # Simple text editor
+zathura                     # PDF viewer
+zathura-pdf-mupdf           # MuPDF for zathura
+zathura-cb                  # Comic books for zathura
+
+# Virtualization
+
+virtualbox
+virtualbox-host-modules-arch

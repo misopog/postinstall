@@ -1,0 +1,90 @@
+#!/bin/sh
+
+
+init() {
+    clear
+
+    echo -ne "
+---------------------------------------------------------------------------
+            postinstall - a simple post-install script for arch            
+---------------------------------------------------------------------------
+    "
+
+    # create a few folders (i promise you will need them)
+    mkdir -p $HOME/.cache/postinstall/
+    mkdir -p $HOME/.local/bin $HOME/.local/src
+
+}
+
+yay() {
+
+    # install yay
+        git clone https://aur.archlinux.org/yay-bin $HOME/.cache/postinstall/yay-bin
+        cd $HOME/.cache/postinstall/yay-bin    
+        makepkg -si
+    # check if yay is installed and bail if it isn't
+        if ! command -v "yay" &> /dev/null; then
+            echo "yay is not installed"
+            exit 1
+        fi
+}
+
+
+
+packages() {
+    # package list url (the file packages in the repo)
+        curl https://github.com/misopog/postinstall/packages > $HOME/.cache/postinstall/packages
+    # i don't know what half of this does i just followed guides on the internet 
+        packages=()
+        while IFS= read -r line; do
+    # ignore lines starting with a #
+        if [[ $line == \#* ]]; then
+            continue
+        fi
+    
+        package=$(echo "$line" | awk '{print $1}')
+        packages+=("$package")
+        done < $HOME/.cache/postinstall/packages
+
+    yay -Syu --noconfirm "${packages[@]}"
+
+done < /tmp/packages
+}
+
+setupdots() {
+
+    # if git is not installed, (which it should since it is in the packages file and if it isn't by then i honestly don't know)
+
+    if ! command -v "git" &> /dev/null; then
+        echo "git is not installed"
+        exit 1
+    else
+        git clone https://github.com/misopog/dots $HOME/.cache/postinstall/dots
+    fi
+
+    # setup the dots (best dotfile init system)
+    cd $HOME/.cache/postinstall/dots
+    cp * $HOME/
+
+    # user dirs
+    mkdir -p $HOME/dl $HOME/dox $HOME/mus $HOME/pix $HOME/vid
+    xdg-user-dirs-update
+}
+
+sucklesstools() {
+    if ! command -v "git" &> /dev/null; then
+        echo "git is not installed"
+        exit 1
+    else
+        git clone https://github.com/LukeSmithXYZ/st $HOME/.cache/postinstall/st
+        git clone https://github.com/LukeSmithXYZ/dmenu $HOME/.cache/postinstall/dmenu
+    fi
+
+
+}
+
+
+init
+yay
+packages
+setupdots
