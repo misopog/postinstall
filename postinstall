@@ -14,8 +14,6 @@ init() {
     mkdir -p $HOME/.cache/postinstall/
     mkdir -p $HOME/.local/bin $HOME/.local/src
 
-
-    sleep 5
     clear
 }
 
@@ -25,11 +23,6 @@ yayinstall() {
         git clone https://aur.archlinux.org/yay-bin $HOME/.cache/postinstall/yay-bin
         cd $HOME/.cache/postinstall/yay-bin    
         makepkg -si
-    # check if yay is installed and bail if it isn't
-        if ! command -v "yay" &> /dev/null; then
-            echo "yay is not installed"
-            exit 1
-        fi
     clear
 }
 
@@ -73,25 +66,15 @@ setupdots() {
     mkdir -p $HOME/dl $HOME/dox $HOME/mus $HOME/pix $HOME/vid
     xdg-user-dirs-update
 
-    # enable tap to click
-    [ ! -f /etc/X11/xorg.conf.d/40-libinput.conf ] && sudo printf 'Section "InputClass"
-                Identifier "libinput touchpad catchall"
-                MatchIsTouchpad "on"
-                MatchDevicePath "/dev/input/event*"
-                Driver "libinput"
-	            # Enable left mouse button by tapping
-	            Option "Tapping" "on"
-        EndSection' >/etc/X11/xorg.conf.d/40-libinput.conf
-    
 
-sudo bash
-    # Make pacman colorful, concurrent downloads and Pacman eye-candy.
+sudo bash -c '
+    # make pacman colorful, concurrent downloads and pacman eye-candy.
         sudo grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
         sudo sed -Ei "s/^#(ParallelDownloads).*/\1 = 5/;/^#Color$/s/#//" /etc/pacman.conf
 
-    # Use all cores for compilation.
+    # use all cores for compilation.
         sudo sed -i "s/-j2/-j$(nproc)/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
-    
+    '
     clear
 
 }
@@ -124,6 +107,27 @@ sucklesstools() {
 
 }
 
+ending() {
+    echo -ne "
+---------------------------------------------------------------------------
+            postinstall - a simple post-install script for arch            
+---------------------------------------------------------------------------
+             "
+    sleep 2
+    echo -ne "
+---------------------------------------------------------------------------
+                                    done                                              
+---------------------------------------------------------------------------
+             "
+    sleep 2
+    echo -ne "
+---------------------------------------------------------------------------
+                            rebooting in 10 seconds                                                                  
+---------------------------------------------------------------------------
+             "
+    sleep 10
+    reboot
+}
 
 init
 yayinstall
