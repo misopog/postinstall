@@ -16,7 +16,7 @@ xf86-input-libinput         # Trackpad driver
 arandr                      # GUI for xrandr
 mesa                        # Open source version of OpenGL
 xcompmgr                    # Compositor
-i3                          # My window manager of choice
+i3-wm                       # My window manager of choice
 
 # Theming
 
