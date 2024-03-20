@@ -31,6 +31,15 @@ network-manager-applet      # System tray icon/utility for network connectivity
 wireguard-tools             # Wireguard utils
 wireguird                   # Wireguard gui
 
+# Audio
+
+pipewire                    # PipeWire server 
+pipewire-alsa               # Alsa for PipeWire
+pipewire-pulse              # Pulseaudio for PipeWire
+pipewire-jack               # Jack for PipeWire
+wireplumber                 # wireplumber
+helvum                      # GTK patchbay for PipeWire
+
 # Printing
 cups                        # Open source printer drivers
 cups-pdf                    # PDF support for cups

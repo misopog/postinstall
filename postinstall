@@ -1,5 +1,5 @@
 #!/bin/sh
-
+# postinstall script - misopog
 
 init() {
     clear
@@ -14,6 +14,7 @@ init() {
     mkdir -p $HOME/.cache/postinstall/
     mkdir -p $HOME/.local/bin $HOME/.local/src
 
+    clear
 }
 
 yay() {
@@ -27,13 +28,14 @@ yay() {
             echo "yay is not installed"
             exit 1
         fi
+    clear
 }
 
 
 
 packages() {
     # package list url (the file packages in the repo)
-        curl https://github.com/misopog/postinstall/packages > $HOME/.cache/postinstall/packages
+        curl https://raw.githubusercontent.com/misopog/postinstall/main/packages > $HOME/.cache/postinstall/packages
     # i don't know what half of this does i just followed guides on the internet 
         packages=()
         while IFS= read -r line; do
@@ -49,6 +51,7 @@ packages() {
     yay -Syu --noconfirm "${packages[@]}"
 
 done < /tmp/packages
+    clear
 }
 
 setupdots() {
@@ -69,6 +72,28 @@ setupdots() {
     # user dirs
     mkdir -p $HOME/dl $HOME/dox $HOME/mus $HOME/pix $HOME/vid
     xdg-user-dirs-update
+
+    # enable tap to click
+        [ ! -f /etc/X11/xorg.conf.d/40-libinput.conf ] && printf 'Section "InputClass"
+                Identifier "libinput touchpad catchall"
+                MatchIsTouchpad "on"
+                MatchDevicePath "/dev/input/event*"
+                Driver "libinput"
+	            # Enable left mouse button by tapping
+	            Option "Tapping" "on"
+        EndSection' >/etc/X11/xorg.conf.d/40-libinput.conf
+    
+    clear
+
+}
+
+pipewire() {
+    # setup pipewire
+    systemctl --user enable --now pipewire.socket
+    systemctl --user enable --now pipewire-pulse.socket
+    systemctl --user enable --now wireplumber.service
+
+    clear
 }
 
 sucklesstools() {
@@ -78,8 +103,15 @@ sucklesstools() {
     else
         git clone https://github.com/LukeSmithXYZ/st $HOME/.cache/postinstall/st
         git clone https://github.com/LukeSmithXYZ/dmenu $HOME/.cache/postinstall/dmenu
+        cd $HOME/.cache/postinstall/st
+        sed -i 's/static int borderpx = 2;/static int borderpx = 20;/' config.h
+        sudo make clean install
+        cd $HOME/.cache/postinstall/dmenu
+        sed -i 's/bh = drw->fonts->h + 2;/bh = drw->fonts->h + 12;/'
+        sudo make clean install
+        cd $HOME
+        clear
     fi
-
 
 }
 
@@ -88,3 +120,5 @@ init
 yay
 packages
 setupdots
+pipewire
+sucklesstools
