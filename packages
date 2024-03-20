@@ -64,7 +64,7 @@ gparted
 dosfstools                  
 pcmanfm                     
 lxsession                   
-vscodium                    
+vscodium-bin                   
 neovim                      
 clang                       
 cmake                       
