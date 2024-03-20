@@ -18,7 +18,7 @@ init() {
     clear
 }
 
-yay() {
+yayinstall() {
 	sudo pacman -Syu git
     # install yay
         git clone https://aur.archlinux.org/yay-bin $HOME/.cache/postinstall/yay-bin
@@ -68,7 +68,7 @@ setupdots() {
 
     # setup the dots (best dotfile init system)
     cd $HOME/.cache/postinstall/dots
-    cp . $HOME/
+    cp -r . $HOME/
 
     # user dirs
     mkdir -p $HOME/dl $HOME/dox $HOME/mus $HOME/pix $HOME/vid
@@ -121,7 +121,7 @@ sucklesstools() {
 
 
 init
-yay
+yayinstall
 packages
 setupdots
 pipewire
