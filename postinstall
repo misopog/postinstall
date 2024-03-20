@@ -14,12 +14,11 @@ init() {
     mkdir -p $HOME/.cache/postinstall/
     mkdir -p $HOME/.local/bin $HOME/.local/src
 
-    sleep 5
     clear
 }
 
 yayinstall() {
-	sudo pacman -Syu git
+
     # install yay
         git clone https://aur.archlinux.org/yay-bin $HOME/.cache/postinstall/yay-bin
         cd $HOME/.cache/postinstall/yay-bin    
@@ -50,8 +49,6 @@ packages() {
         done < $HOME/.cache/postinstall/packages
 
     yay -Syu --noconfirm "${packages[@]}"
-
-done < /tmp/packages
     clear
 }
 
@@ -68,14 +65,14 @@ setupdots() {
 
     # setup the dots (best dotfile init system)
     cd $HOME/.cache/postinstall/dots
-    cp -r . $HOME/
+    cp * $HOME/
 
     # user dirs
     mkdir -p $HOME/dl $HOME/dox $HOME/mus $HOME/pix $HOME/vid
     xdg-user-dirs-update
 
     # enable tap to click
-        [ ! -f /etc/X11/xorg.conf.d/40-libinput.conf ] && printf 'Section "InputClass"
+    [ ! -f /etc/X11/xorg.conf.d/40-libinput.conf ] && sudo printf 'Section "InputClass"
                 Identifier "libinput touchpad catchall"
                 MatchIsTouchpad "on"
                 MatchDevicePath "/dev/input/event*"
@@ -83,10 +80,16 @@ setupdots() {
 	            # Enable left mouse button by tapping
 	            Option "Tapping" "on"
         EndSection' >/etc/X11/xorg.conf.d/40-libinput.conf
+    
 
-    # zsh
-    chsh -s /bin/zsh
+sudo bash
+    # Make pacman colorful, concurrent downloads and Pacman eye-candy.
+        sudo grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
+        sudo sed -Ei "s/^#(ParallelDownloads).*/\1 = 5/;/^#Color$/s/#//" /etc/pacman.conf
 
+    # Use all cores for compilation.
+        sudo sed -i "s/-j2/-j$(nproc)/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
+    
     clear
 
 }
