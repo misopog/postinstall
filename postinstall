@@ -9,6 +9,8 @@ init() {
             postinstall - a simple post-install script for arch            
 ---------------------------------------------------------------------------
     "
+    sleep 5
+
 
     # create a few folders (i promise you will need them)
     mkdir -p $HOME/.cache/postinstall/
