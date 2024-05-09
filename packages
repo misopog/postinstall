@@ -28,7 +28,8 @@ wireguard-tools
 pipewire                  
 pipewire-alsa             
 pipewire-pulse              
-pipewire-jack         
+pipewire-jack    
+pamixer
 wireplumber              
 helvum                    
 # Printing
@@ -71,7 +72,10 @@ dosfstools
 pcmanfm               
 lxsession            
 # Dev
-vscodium-bin              
+vscodium-bin    
+vim
+vi
+nano
 neovim                  
 clang                      
 cmake                      
@@ -91,7 +95,7 @@ cmus
 mpv                         
 maim                        
 slop                        
-ffmpeg                      
+ffmpeg 
 # Graphics
 imagemagick                 
 nsxiv                      
