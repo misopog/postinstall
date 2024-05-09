@@ -8,7 +8,7 @@ init() {
 ---------------------------------------------------------------------------
             postinstall - a simple post-install script for arch            
 ---------------------------------------------------------------------------
-             "
+"
     
     sleep 5
 
@@ -103,6 +103,7 @@ ending () {
 ---------------------------------------------------------------------------
 
 postinstall - reboot your computer
+after rebooting your computer type chsh -s /bin/zsh into your console and reboot after
 Type 'y' to reboot, 'n' to cancel: 			
 "
 
