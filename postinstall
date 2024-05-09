@@ -59,7 +59,7 @@ dots() {
     git clone https://github.com/misopog/dots "$HOME/.cache/postinstall/dots"
     cd "$HOME/.cache/postinstall/dots" || exit
 
-    cp . "$HOME/"
+    cp -r . "$HOME/"
 
     mkdir -p "$HOME/dl" "$HOME/dox" "$HOME/mus" "$HOME/pix" "$HOME/vid"
     xdg-user-dirs-update
@@ -96,7 +96,7 @@ suckless() {
 ending () {
 
 	clear
-	rm -r $HOME/.cache/postinstall/
+	rm -rf $HOME/.cache/postinstall/
 	    echo -ne "
 ---------------------------------------------------------------------------
 			postinstall - done            
