@@ -94,11 +94,11 @@ ending () {
 	    echo -ne "
 
 ---------------------------------------------------------------------------
-							postinstall - done            
+			postinstall - done            
 ---------------------------------------------------------------------------
 
-			postinstall - reboot your computer
-            Type 'y' to reboot, 'n' to cancel: 
+postinstall - reboot your computer
+Type 'y' to reboot, 'n' to cancel: 
 				
 				"
 
