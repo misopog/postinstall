@@ -21,8 +21,10 @@ init() {
     sudo sed -Ei "s/^#(ParallelDownloads).*/\1 = 5/;/^#Color$/s/#//" /etc/pacman.conf
 
     sudo sed -i "s/-j2/-j$(nproc)/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
-
+   
 # install yay 
+
+    sudo pacman -Syu git
 
     git clone https://aur.archlinux.org/yay-bin "$HOME/.cache/postinstall/yay-bin"
     cd "$HOME/.cache/postinstall/yay-bin" || exit
