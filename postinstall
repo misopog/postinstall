@@ -38,16 +38,14 @@ pkg() {
     curl https://raw.githubusercontent.com/misopog/postinstall/main/packages > "$HOME/.cache/postinstall/packages"
 
     # i don't know what half of this does i just followed guides on the internet 
-    # also copied something from xaizone
 
     packages=()
-    while IFS= read -r line; do
-        package=$(echo "$line" | awk '{print $1}')
-	packages+=("$package")
+    while IFS= read -r line; do    
         if [[ $line == \#* ]]; then
             continue
         fi
-
+    package=$(echo "$line" | awk '{print $1}')
+    packages+=("$package")
     done < $HOME/.cache/postinstall/packages   
     yay -Syu --noconfirm "${packages[@]}"
 }
