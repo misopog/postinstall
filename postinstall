@@ -9,18 +9,19 @@ init() {
 ---------------------------------------------------------------------------
             postinstall - a simple post-install script for arch            
 ---------------------------------------------------------------------------
-    "
+             "
+    
     sleep 5
 
     mkdir -p "$HOME/.cache/postinstall/"
     mkdir -p "$HOME/.local/bin" "$HOME/.local/src"
 	
-	git clone https://aur.archlinux.org/yay-bin "$HOME/.cache/postinstall/yay-bin"
+    git clone https://aur.archlinux.org/yay-bin "$HOME/.cache/postinstall/yay-bin"
     cd "$HOME/.cache/postinstall/yay-bin" || exit
 
     makepkg -si
 	
-	cd $HOME
+   cd $HOME
 }
 
 pkg() {
@@ -92,15 +93,13 @@ ending () {
 	clear
 	rm -r $HOME/.cache/postinstall/
 	    echo -ne "
-
 ---------------------------------------------------------------------------
 			postinstall - done            
 ---------------------------------------------------------------------------
 
 postinstall - reboot your computer
-Type 'y' to reboot, 'n' to cancel: 
-				
-				"
+Type 'y' to reboot, 'n' to cancel: 			
+		     "
 
     read -r response
 
