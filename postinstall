@@ -24,12 +24,12 @@ init() {
    
 # install yay 
 
-    sudo pacman -Syu git
+    sudo pacman -Syu git --noconfirm
 
     git clone https://aur.archlinux.org/yay-bin "$HOME/.cache/postinstall/yay-bin"
     cd "$HOME/.cache/postinstall/yay-bin" || exit
 
-    makepkg -si
+    makepkg --noconfirm -si
 	
    cd $HOME
 }
@@ -59,7 +59,7 @@ dots() {
     git clone https://github.com/misopog/dots "$HOME/.cache/postinstall/dots"
     cd "$HOME/.cache/postinstall/dots" || exit
 
-    cp * "$HOME/"
+    cp . "$HOME/"
 
     mkdir -p "$HOME/dl" "$HOME/dox" "$HOME/mus" "$HOME/pix" "$HOME/vid"
     xdg-user-dirs-update
@@ -104,7 +104,7 @@ ending () {
 
 postinstall - reboot your computer
 Type 'y' to reboot, 'n' to cancel: 			
-		     "
+"
 
     read -r response
 
