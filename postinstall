@@ -43,7 +43,11 @@ pkg() {
     packages=()
     while IFS= read -r line; do
         package=$(echo "$line" | awk '{print $1}')
-        packages+=("$package")
+	packages+=("$package")
+        if [[ $line == \#* ]]; then
+            continue
+        fi
+
     done < $HOME/.cache/postinstall/packages   
     yay -Syu --noconfirm "${packages[@]}"
 }
