@@ -14,16 +14,7 @@ init() {
 
     mkdir -p "$HOME/.cache/postinstall/"
     mkdir -p "$HOME/.local/bin" "$HOME/.local/src"
-    
-# skidded from luke smith
-
-    sudo grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
-    sudo sed -Ei "s/^#(ParallelDownloads).*/\1 = 5/;/^#Color$/s/#//" /etc/pacman.conf
-
-    sudo sed -i "s/-j2/-j$(nproc)/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
-
-# install yay 
-
+	
     git clone https://aur.archlinux.org/yay-bin "$HOME/.cache/postinstall/yay-bin"
     cd "$HOME/.cache/postinstall/yay-bin" || exit
 
@@ -37,15 +28,16 @@ pkg() {
 
     curl https://raw.githubusercontent.com/misopog/postinstall/main/packages > "$HOME/.cache/postinstall/packages"
 
-    # i don't know what half of this does i just followed guides on the internet 
-    # also copied something from xaizone
-
-    packages=()
-    while IFS= read -r line; do
-        package=$(echo "$line" | awk '{print $1}')
-        packages+=("$package")
-    done < $HOME/.cache/postinstall/packages   
-    yay -Syu --noconfirm "${packages[@]}"
+	# i don't know what half of this does i just followed guides on the internet 
+    
+	while IFS= read -r line; do
+        package=$(echo "$line" | awk '{print $1}')	
+        if [[ $line == \#* ]]; then
+            continue
+        fi
+		
+        yay -S --noconfirm "$package"
+	done < "$HOME/.cache/postinstall/packages"
 }
 
 
@@ -60,6 +52,12 @@ dots() {
     mkdir -p "$HOME/dl" "$HOME/dox" "$HOME/mus" "$HOME/pix" "$HOME/vid"
     xdg-user-dirs-update
 
+# skidded from luke smith
+
+    sudo grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
+    sudo sed -Ei "s/^#(ParallelDownloads).*/\1 = 5/;/^#Color$/s/#//" /etc/pacman.conf
+
+    sudo sed -i "s/-j2/-j$(nproc)/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
 }
 
 
