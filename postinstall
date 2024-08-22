@@ -59,13 +59,16 @@ audio() {
 suckless() {
 	clear
 	# until i find a better way to do this, this is the best i can do
-	git clone https://github.com/LukeSmithXYZ/st "$HOME/.local/src/st"
+	git clone https://github.com/LukeSmithXYZ/st    "$HOME/.local/src/st"
 	git clone https://github.com/LukeSmithXYZ/dmenu "$HOME/.local/src/dmenu"
+	git clone https://github.com/misopog/dwm	"$HOME/.local/src/dwm"
 	cd $HOME/.local/src/st
 	sed -i 's/static int borderpx = 2;/static int borderpx = 20;/' config.h
 	sudo make clean install
 	cd $HOME/.local/src/dmenu
 	sed -i 's/bh = drw->fonts->h + 2;/bh = drw->fonts->h + 12;/'
+	sudo make clean install
+	cd $HOME/.local/src/dwm
 	sudo make clean install
 	cd $HOME
 }
