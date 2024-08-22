@@ -14,8 +14,7 @@ xf86-video-intel
 xf86-input-libinput         
 arandr                      
 mesa                        
-xcompmgr                    
-i3-wm                       
+xcompmgr                                        
 # Theming
 lxappearance              
 papirus-icon-theme      
@@ -67,7 +66,9 @@ exfat-utils
 ntfs-3g                   
 parted                     
 gparted                   
-dosfstools                 
+dosfstools 
+udisks2
+udiskie
 # General utils
 pcmanfm               
 lxsession            
@@ -84,7 +85,10 @@ gcc
 glibc                 
 nodejs                     
 npm                        
-python                     
+python       
+libx11 
+libxft
+libxinerama
 # Web tools
 firefox                 
 filezilla                  
